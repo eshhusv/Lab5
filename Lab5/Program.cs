@@ -53,7 +53,7 @@
 
         double FuncWithout(double a, double b, double c, double x, double y)
         {
-            return Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+            return Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
         }
 
         double FuncWith(double a, double b, double c, double x, double y)
@@ -71,8 +71,11 @@
             
             try
             {
-                d = Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
-                Console.WriteLine($"D = {d:F2}");
+                if (a >= 0 && b >= 0)
+                {
+                    d = Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+                    Console.WriteLine($"D = {d:F2}");
+                }
             }
             catch(ArithmeticException ex)
             {
