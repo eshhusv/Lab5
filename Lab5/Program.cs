@@ -2,7 +2,7 @@
 {
     private static void Main(string[] args)
     {
-        double a = 0, b = 0, c = 0;
+        double a = 0, b = 0, c = 0, x = 0, y = 0;
 
         try
         {
@@ -10,13 +10,18 @@
             a = double.Parse(Console.ReadLine());
             Console.Write("Enter By: ");
             b = double.Parse(Console.ReadLine());
+            Console.Write("Enter x: ");
+            x = double.Parse(Console.ReadLine());
+            Console.Write("Enter y: ");
+            y = double.Parse(Console.ReadLine());
             Console.Write("Enter C: ");
             c = double.Parse(Console.ReadLine());
             Console.WriteLine($"{Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2)):F2}");
 
+
             try
             {
-                double d = FuncWith(a, b, c);
+                double d = FuncWith(a, b, c, x, y);
                 Console.WriteLine($"D = {d:F2}");
             }
             catch(Exception ex)
@@ -25,7 +30,7 @@
             }
             try
             {
-                FuncExcept(a, b, c);
+                FuncExcept(a, b, c, x, y);
             }
             catch (Exception ex)
             {
@@ -33,7 +38,7 @@
             }
             try
             {
-                double d = FuncOur(a, b, c);
+                double d = FuncOur(a, b, c, x, y);
                 Console.WriteLine($"D = {d:F2}");
             }
             catch(Exception ex)
@@ -46,27 +51,27 @@
             Console.WriteLine(ex.Message);
         }
 
-        double FuncWithout(double a, double b, double c)
+        double FuncWithout(double a, double b, double c, double x, double y)
         {
             return Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
         }
 
-        double FuncWith(double a, double b, double c)
+        double FuncWith(double a, double b, double c, double x, double y)
         {
-            if (a >= 0 && b >= 0 && c >= 0)
+            if (a >= 0 && b >= 0)
             {
-                return Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+                return Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
             }
             throw new Exception("The distance cannot be negative");
         }
 
-        void FuncExcept(double a, double b, double c)
+        void FuncExcept(double a, double b, double c, double x, double y)
         {
             double d = 0;
             
             try
             {
-                d = Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+                d = Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
                 Console.WriteLine($"D = {d:F2}");
             }
             catch(ArithmeticException ex)
@@ -79,11 +84,11 @@
             }
         }
 
-        double FuncOur(double a, double b, double c)
+        double FuncOur(double a, double b, double c, double x, double y)
         {
-            if (a >= 0 && b >= 0 && c >= 0)
+            if (a >= 0 && b >= 0)
             {
-                return Math.Abs(a + b + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
+                return Math.Abs(a * x + b * y + c) / Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
             }
             throw new Exception("The distance cannot be negative");
         }
